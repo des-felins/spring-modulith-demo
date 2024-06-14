@@ -1,14 +1,14 @@
 package dev.cat.modular.monolith.customer.web;
 
 import dev.cat.modular.monolith.calculator.CalculatorAPI;
+import dev.cat.modular.monolith.customer.service.CustomerService;
+import dev.cat.modular.monolith.customer.validation.CorrectShipmentPrice;
 import dev.cat.modular.monolith.dto.calculator.CalculatorRequest;
 import dev.cat.modular.monolith.dto.customer.CustomerRequest;
 import dev.cat.modular.monolith.dto.customer.CustomerResponse;
-import dev.cat.modular.monolith.customer.service.CustomerService;
-import dev.cat.modular.monolith.globalexceptions.ValidationException;
-import dev.cat.modular.monolith.shipment.ShipmentAPI;
 import dev.cat.modular.monolith.dto.shipment.ShipmentRequest;
 import dev.cat.modular.monolith.dto.shipment.ShipmentResponse;
+import dev.cat.modular.monolith.shipment.ShipmentAPI;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,21 +43,11 @@ public class CustomerController {
     }
 
     @PostMapping("/customers/{id}/new-shipment")
-    public ResponseEntity<ShipmentResponse> createShipmentOrder(@Valid @RequestBody ShipmentRequest request,
+    public ResponseEntity<ShipmentResponse> createShipmentOrder(@Valid @RequestBody @CorrectShipmentPrice ShipmentRequest request,
                                                                 @PathVariable long id) {
 
-        double price = calculatorAPI.calculatePrice(
-                new CalculatorRequest(request.weight(), request.from(), request.to()));
-
-        if (request.price() != 0.0 && price != request.price()) {
-            throw new ValidationException("Shipment price doesn't match the requested price.");
-        }
-        ShipmentRequest updatedRequest = new ShipmentRequest(
-                request.customerId(), request.weight(), request.to(), request.from(), price);
-
-        return ResponseEntity.ofNullable(shipmentAPI.createOrder(updatedRequest));
+        return ResponseEntity.ofNullable(shipmentAPI.createOrder(request));
     }
-
 
 
 }

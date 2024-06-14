@@ -8,7 +8,7 @@ import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class PriceConstraintValidator implements ConstraintValidator<ShipmentPrice, ShipmentRequest> {
+public class PriceConstraintValidator implements ConstraintValidator<CorrectShipmentPrice, ShipmentRequest> {
 
     private final CalculatorAPI calculatorAPI;
 
@@ -16,6 +16,6 @@ public class PriceConstraintValidator implements ConstraintValidator<ShipmentPri
     public boolean isValid(ShipmentRequest request, ConstraintValidatorContext constraintValidatorContext) {
 
         double price = calculatorAPI.calculatePrice(new CalculatorRequest(request.weight(), request.from(), request.to()));
-        return request.price() == 0.0 || request.price() == price;
+        return request.price() == price;
     }
 }
