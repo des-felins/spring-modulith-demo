@@ -11,4 +11,5 @@ import java.lang.annotation.Target;
 @Target( { ElementType.METHOD, ElementType.FIELD } )
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ShipmentPrice {
+    String message() default "Shipment price doesn't match the requested price.";
 }
