@@ -6,5 +6,4 @@ public record ShipmentRequest(@NotNull Long customerId,
                               @NotNull double weight,
                               @NotNull AddressDto from,
                               @NotNull AddressDto to,
-                              double price) {
-}
+                              double price) { }

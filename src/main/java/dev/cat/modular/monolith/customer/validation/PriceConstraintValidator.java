@@ -8,7 +8,7 @@ import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class PriceConstraintValidator implements ConstraintValidator<ShipmentPrice, ShipmentRequest> {
+public class PriceConstraintValidator implements ConstraintValidator<CorrectShipmentPrice, ShipmentRequest> {
 
     private final CalculatorAPI calculatorAPI;
 
