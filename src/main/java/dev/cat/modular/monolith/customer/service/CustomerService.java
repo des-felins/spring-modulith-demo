@@ -3,16 +3,15 @@ package dev.cat.modular.monolith.customer.service;
 import dev.cat.modular.monolith.ShipmentCreateEvent;
 import dev.cat.modular.monolith.ShipmentStatusChangeEvent;
 import dev.cat.modular.monolith.customer.CustomerAPI;
-import dev.cat.modular.monolith.dto.customer.CustomerRequest;
-import dev.cat.modular.monolith.dto.customer.CustomerResponse;
 import dev.cat.modular.monolith.customer.mapper.CustomerMapper;
 import dev.cat.modular.monolith.customer.model.Customer;
 import dev.cat.modular.monolith.customer.repository.CustomerRepository;
+import dev.cat.modular.monolith.dto.customer.CustomerRequest;
+import dev.cat.modular.monolith.dto.customer.CustomerResponse;
 import dev.cat.modular.monolith.globalexceptions.NotFoundException;
 import dev.cat.modular.monolith.globalexceptions.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.modulith.events.ApplicationModuleListener;
 import org.springframework.stereotype.Service;
 
@@ -46,12 +45,12 @@ public class CustomerService implements CustomerAPI {
 
     @ApplicationModuleListener
     void onUpdateShipmentStatusEvent(ShipmentStatusChangeEvent event) {
-        log.info("Changed status of shipment: " + event.orderId());
+        log.info("Changed status of shipment {}", event.orderId());
     }
 
     @ApplicationModuleListener
     void onShipmentCreateEvent(ShipmentCreateEvent event) {
-        log.info("Created shipment: " + event.orderId());
+        log.info("Created shipment {}", event.orderId());
     }
 
 

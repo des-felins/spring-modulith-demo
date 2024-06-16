@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,15 +20,21 @@ public class Customer {
     private Long id;
     private String firstName;
     private String lastName;
-    private long phoneNumber;
+    private String phoneNumber;
+    private String email;
+    private String country;
 
-//    @JsonIgnore
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "customer_id")
-//    private Set<Long> orderIds = new HashSet<>();
-//
-//    public void addOrder(Long orderId) {
-//        this.orderIds.add(orderId);
-//    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(id, customer.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

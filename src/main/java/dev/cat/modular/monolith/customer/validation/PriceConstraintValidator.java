@@ -15,7 +15,15 @@ public class PriceConstraintValidator implements ConstraintValidator<CorrectShip
     @Override
     public boolean isValid(ShipmentRequest request, ConstraintValidatorContext constraintValidatorContext) {
 
-        double price = calculatorAPI.calculatePrice(new CalculatorRequest(request.weight(), request.from(), request.to()));
-        return request.price() == price;
+        boolean result;
+        double price;
+        if (request != null) {
+            price = calculatorAPI.calculatePrice(new CalculatorRequest(request.weight(), request.from(), request.to()));
+            result = request.price() == price;
+        } else {
+            result = true;
+        }
+
+        return result;
     }
 }

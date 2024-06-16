@@ -2,6 +2,7 @@ package dev.cat.modular.monolith.customer.web;
 
 import dev.cat.modular.monolith.calculator.CalculatorAPI;
 import dev.cat.modular.monolith.customer.service.CustomerService;
+import dev.cat.modular.monolith.customer.validation.CorrectPhoneNumber;
 import dev.cat.modular.monolith.customer.validation.CorrectShipmentPrice;
 import dev.cat.modular.monolith.dto.calculator.CalculatorRequest;
 import dev.cat.modular.monolith.dto.customer.CustomerRequest;
@@ -27,7 +28,7 @@ public class CustomerController {
     private final CustomerService service;
 
     @PostMapping("/customers")
-    public ResponseEntity<CustomerResponse> createCustomer(@Valid @RequestBody CustomerRequest request) {
+    public ResponseEntity<CustomerResponse> createCustomer(@Valid @RequestBody @CorrectPhoneNumber CustomerRequest request) {
         return ResponseEntity.ofNullable(service.saveCustomer(request));
     }
 

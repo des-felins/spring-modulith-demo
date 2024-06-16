@@ -32,7 +32,6 @@ public class ShipmentService implements ShipmentAPI {
 
     private final ShipmentRepository shipmentRepository;
     private final AddressRepository addressRepository;
-    private final CalculatorAPI calculatorAPI;
     private final ApplicationEventPublisher events;
 
     @Override
@@ -41,11 +40,6 @@ public class ShipmentService implements ShipmentAPI {
         Address addressTo;
         Address addressFrom;
 
-        double verifiedPrice = calculatorAPI.calculatePrice(new CalculatorRequest(request.weight(), request.from(), request.to()));
-
-        if (verifiedPrice != request.price()) {
-            throw new ValidationException("Shipment price doesn't match the requested price.");
-        }
         Shipment shipment = ShipmentMapper.INSTANCE.mapToShipment(request);
 
         if (shipment.getAddressTo().getId() == null) {

@@ -1,6 +1,5 @@
 package dev.cat.modular.monolith.shipment.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,18 +21,18 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String country;
+    private String state;
     private String city;
     private String street;
     private String house;
     private String apartment;
     private String zipCode;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_from_id")
     Set<Shipment> shipmentsFrom = new HashSet<>();
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_to_id")
     Set<Shipment> shipmentsTo = new HashSet<>();

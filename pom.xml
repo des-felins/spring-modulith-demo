@@ -115,6 +115,11 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>com.googlecode.libphonenumber</groupId>
+				<artifactId>libphonenumber</artifactId>
+				<version>8.13.39</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
