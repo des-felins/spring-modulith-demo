@@ -105,6 +105,11 @@
 			<artifactId>mapstruct</artifactId>
 			<version>1.5.5.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>com.googlecode.libphonenumber</groupId>
+			<artifactId>libphonenumber</artifactId>
+			<version>8.13.39</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -114,11 +119,6 @@
 				<version>${spring-modulith.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.googlecode.libphonenumber</groupId>
-				<artifactId>libphonenumber</artifactId>
-				<version>8.13.39</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
