@@ -1,4 +1,4 @@
-package dev.cat.modular.monolith.globalexceptions;
+package dev.cat.modular.monolith.customer.globalexceptions;
 
 import lombok.Getter;
 

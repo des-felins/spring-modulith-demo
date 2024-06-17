@@ -4,7 +4,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import dev.cat.modular.monolith.dto.customer.CustomerRequest;
-import dev.cat.modular.monolith.globalexceptions.ValidationException;
+import dev.cat.modular.monolith.customer.globalexceptions.ValidationException;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

@@ -20,16 +20,8 @@ public class Shipment {
     private Long id;
     private Long customerId;
     private double weight;
-
-    @ManyToOne(cascade =
-            {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "address_from_id")
-    private Address addressFrom;
-
-    @ManyToOne(cascade =
-            {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "address_to_id")
-    private Address addressTo;
+    private String addressFrom;
+    private String addressTo;
 
     @Column(name = "status", columnDefinition = "ENUM('NEW', 'IN_PROGRESS', 'DELIVERED') default 'NEW'")
     @Enumerated(EnumType.STRING)

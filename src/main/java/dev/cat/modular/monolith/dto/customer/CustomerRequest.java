@@ -1,11 +1,11 @@
 package dev.cat.modular.monolith.dto.customer;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
-public record CustomerRequest(@NotNull String firstName,
-                              @NotNull String lastName,
-                              @NotNull String country,
-                              @NotNull String phoneNumber,
-                              @NotNull @Email String email) {
+public record CustomerRequest(@NotBlank String firstName,
+                              @NotBlank String lastName,
+                              @NotBlank String country,
+                              @NotBlank String phoneNumber,
+                              @NotBlank @Email String email) {
 }

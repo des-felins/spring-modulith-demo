@@ -18,7 +18,7 @@ public class PriceConstraintValidator implements ConstraintValidator<CorrectShip
         boolean result;
         double price;
         if (request != null) {
-            price = calculatorAPI.calculatePrice(new CalculatorRequest(request.weight(), request.from(), request.to()));
+            price = calculatorAPI.calculatePrice(new CalculatorRequest(request.weight(), request.addressFrom(), request.addressTo()));
             result = request.price() == price;
         } else {
             result = true;
