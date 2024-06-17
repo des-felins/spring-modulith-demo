@@ -44,9 +44,14 @@ public class CustomerController {
     }
 
     @PostMapping("/customers/{id}/new-shipment")
-    public ResponseEntity<ShipmentResponse> createShipmentOrder(@Valid @RequestBody @CorrectShipmentPrice ShipmentRequest request,
-                                                                @PathVariable long id) {
-
+    public ResponseEntity<ShipmentResponse> createShipmentOrder(
+            @Valid
+            @RequestBody
+            @CorrectShipmentPrice
+            ShipmentRequest request,
+            @PathVariable
+            long id
+    ) {
         return ResponseEntity.ofNullable(shipmentAPI.createOrder(request));
     }
 

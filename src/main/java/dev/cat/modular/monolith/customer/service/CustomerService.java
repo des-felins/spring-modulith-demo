@@ -8,6 +8,8 @@ import dev.cat.modular.monolith.customer.model.Customer;
 import dev.cat.modular.monolith.customer.repository.CustomerRepository;
 import dev.cat.modular.monolith.dto.customer.CustomerRequest;
 import dev.cat.modular.monolith.dto.customer.CustomerResponse;
+import dev.cat.modular.monolith.dto.customer.CustomerRequest;
+import dev.cat.modular.monolith.dto.customer.CustomerResponse;
 import dev.cat.modular.monolith.customer.globalexceptions.NotFoundException;
 import dev.cat.modular.monolith.customer.globalexceptions.ValidationException;
 import lombok.RequiredArgsConstructor;
@@ -45,12 +47,12 @@ public class CustomerService implements CustomerAPI {
 
     @ApplicationModuleListener
     void onUpdateShipmentStatusEvent(ShipmentStatusChangeEvent event) {
-        log.info("Changed status of shipment {}", event.orderId());
+        log.info("Changed status of shipment: {}", event.orderId());
     }
 
     @ApplicationModuleListener
     void onShipmentCreateEvent(ShipmentCreateEvent event) {
-        log.info("Created shipment {}", event.orderId());
+        log.info("Created shipment: {}", event.orderId());
     }
 
 
