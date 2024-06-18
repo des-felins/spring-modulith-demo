@@ -50,7 +50,7 @@ public class ErrorHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
-    public List<String> handleCustomValidationExceptions(ConstraintViolationException ex) {
+    public List<String> handleConstraintValidationExceptions(ConstraintViolationException ex) {
         List<String> errors = new ArrayList<>();
         for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
             errors.add(violation.getMessage());

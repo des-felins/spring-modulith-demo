@@ -13,14 +13,8 @@ public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, Cu
 
     @Override
     public boolean isValid(CustomerRequest request, ConstraintValidatorContext constraintValidatorContext) {
-        boolean result;
-
-        if (request.phoneNumber() == null) {
-            result = true;
-        } else {
-            result = repository.findByEmail(request.email()).isEmpty();
-        }
-        return result;
+        if (request.email() == null) return true;
+        return repository.findByEmail(request.email()).isEmpty();
     }
 }
 

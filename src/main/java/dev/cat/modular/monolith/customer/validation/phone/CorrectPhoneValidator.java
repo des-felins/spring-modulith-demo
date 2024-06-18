@@ -17,15 +17,13 @@ public class CorrectPhoneValidator implements ConstraintValidator<CorrectPhoneNu
         Phonenumber.PhoneNumber phone;
         boolean result = false;
 
-        if (request.phoneNumber() == null) {
-            result = true;
-        } else {
-            try {
-                phone = phoneNumberUtil.parse(request.phoneNumber(), Phonenumber.PhoneNumber.CountryCodeSource.UNSPECIFIED.name());
-                result = phoneNumberUtil.isValidNumber(phone);
-            } catch (NumberParseException e) {
-                log.error(e.getMessage());
-            }
+        if (request.phoneNumber() == null) return true;
+
+        try {
+            phone = phoneNumberUtil.parse(request.phoneNumber(), Phonenumber.PhoneNumber.CountryCodeSource.UNSPECIFIED.name());
+            result = phoneNumberUtil.isValidNumber(phone);
+        } catch (NumberParseException e) {
+            log.error(e.getMessage());
         }
         return result;
     }

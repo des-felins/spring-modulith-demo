@@ -3,6 +3,7 @@ package dev.cat.modular.monolith.customer.web;
 import dev.cat.modular.monolith.calculator.CalculatorAPI;
 import dev.cat.modular.monolith.customer.service.CustomerService;
 import dev.cat.modular.monolith.customer.validation.address.UniqueAddress;
+import dev.cat.modular.monolith.customer.validation.customer.ExistingCustomer;
 import dev.cat.modular.monolith.customer.validation.email.UniqueEmail;
 import dev.cat.modular.monolith.customer.validation.phone.CorrectPhoneNumber;
 import dev.cat.modular.monolith.customer.validation.phone.UniquePhoneNumber;
@@ -44,7 +45,7 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/{id}/shipments")
-    public List<ShipmentResponse> getAllOrdersForCustomer(@PathVariable long id) {
+    public List<ShipmentResponse> getAllOrdersForCustomer(@PathVariable @ExistingCustomer long id) {
         return shipmentAPI.findOrdersByCustomerId(id);
     }
 
@@ -62,6 +63,7 @@ public class CustomerController {
             @UniqueAddress
             ShipmentRequest request,
             @PathVariable
+            @ExistingCustomer
             long id
     ) {
         return ResponseEntity.ofNullable(shipmentAPI.createOrder(request, id));

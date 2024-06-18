@@ -8,14 +8,9 @@ public class UniqueAddressValidator implements ConstraintValidator<UniqueAddress
 
     @Override
     public boolean isValid(ShipmentRequest request, ConstraintValidatorContext constraintValidatorContext) {
-        boolean result;
 
-        if (request.addressTo() == null && request.addressFrom() == null) {
-            result = true;
-        } else {
-            result = !request.addressTo().equals(request.addressFrom());
-        }
-        return result;
+        if (request.addressTo() == null && request.addressFrom() == null) return true;
+        return !request.addressTo().equals(request.addressFrom());
     }
 }
 
