@@ -6,7 +6,7 @@ import dev.cat.modular.monolith.dto.shipment.ShipmentResponse;
 import java.util.List;
 
 public interface ShipmentAPI {
-    ShipmentResponse createOrder(ShipmentRequest request);
+    ShipmentResponse createOrder(ShipmentRequest request, Long customerId);
 
     void updateShipmentStatus(Long id, String status);
 

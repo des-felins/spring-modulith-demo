@@ -9,6 +9,7 @@ import dev.cat.modular.monolith.shipment.mapper.ShipmentMapper;
 import dev.cat.modular.monolith.shipment.model.DeliveryStatus;
 import dev.cat.modular.monolith.shipment.model.Shipment;
 import dev.cat.modular.monolith.shipment.repository.ShipmentRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -26,10 +27,10 @@ public class ShipmentService implements ShipmentAPI {
 
     @Override
     @Transactional
-    public ShipmentResponse createOrder(ShipmentRequest request) {
+    public ShipmentResponse createOrder(ShipmentRequest request, Long customerId) {
 
         Shipment shipment = ShipmentMapper.INSTANCE.mapToShipment(request);
-
+        shipment.setCustomerId(customerId);
         shipment.setDeliveryStatus(DeliveryStatus.NEW);
 
         Shipment newShipment = shipmentRepository.save(shipment);
@@ -48,11 +49,12 @@ public class ShipmentService implements ShipmentAPI {
     @Transactional
     public void updateShipmentStatus(Long id, String status) {
         Optional<Shipment> shipmentOpt = shipmentRepository.findById(id);
-        Shipment shipment = shipmentOpt.get();
-        shipment.setDeliveryStatus(DeliveryStatus.valueOf(status));
-        shipmentRepository.save(shipment);
-        events.publishEvent(new ShipmentStatusChangeEvent(id));
-
+        if (shipmentOpt.isPresent()) {
+            Shipment shipment = shipmentOpt.get();
+            shipment.setDeliveryStatus(DeliveryStatus.valueOf(status));
+            shipmentRepository.save(shipment);
+            events.publishEvent(new ShipmentStatusChangeEvent(id));
+        } else throw new EntityNotFoundException("Couldn't find shipment with id " + id);
     }
 
 }

@@ -48,7 +48,7 @@ public class CustomerController {
         return shipmentAPI.findOrdersByCustomerId(id);
     }
 
-    @PostMapping("/get-a-quote")
+    @PostMapping("/quote")
     public ResponseEntity<Double> calculatePrice(@Valid @RequestBody CalculatorRequest request) {
         Double price = calculatorAPI.calculatePrice(request);
         return new ResponseEntity<>(price, HttpStatus.OK);
@@ -64,7 +64,7 @@ public class CustomerController {
             @PathVariable
             long id
     ) {
-        return ResponseEntity.ofNullable(shipmentAPI.createOrder(request));
+        return ResponseEntity.ofNullable(shipmentAPI.createOrder(request, id));
     }
 
 

@@ -8,6 +8,7 @@ import dev.cat.modular.monolith.customer.model.Customer;
 import dev.cat.modular.monolith.customer.repository.CustomerRepository;
 import dev.cat.modular.monolith.dto.customer.CustomerRequest;
 import dev.cat.modular.monolith.dto.customer.CustomerResponse;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.modulith.events.ApplicationModuleListener;
@@ -30,7 +31,9 @@ public class CustomerService implements CustomerAPI {
     @Override
     public CustomerResponse findCustomerById(Long id) {
         Optional<Customer> customerOpt = repository.findById(id);
-        return CustomerMapper.INSTANCE.mapToCustomerResponse(customerOpt.get());
+        if (customerOpt.isPresent()) {
+            return CustomerMapper.INSTANCE.mapToCustomerResponse(customerOpt.get());
+        } else throw new EntityNotFoundException("Couldn't find customer with id " + id);
     }
 
     @ApplicationModuleListener
