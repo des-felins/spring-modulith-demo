@@ -13,7 +13,7 @@ public class UniquePhoneValidator implements ConstraintValidator<UniquePhoneNumb
 
     @Override
     public boolean isValid(CustomerRequest request, ConstraintValidatorContext constraintValidatorContext) {
-        if (request.phoneNumber() == null) return true;
+        if (request == null) return true;
         return repository.findByPhoneNumber(request.phoneNumber()).isEmpty();
     }
 }

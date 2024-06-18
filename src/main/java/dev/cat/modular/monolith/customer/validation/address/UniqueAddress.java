@@ -1,6 +1,5 @@
 package dev.cat.modular.monolith.customer.validation.address;
 
-import dev.cat.modular.monolith.customer.validation.email.UniqueEmailValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

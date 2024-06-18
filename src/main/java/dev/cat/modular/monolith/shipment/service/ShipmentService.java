@@ -32,6 +32,7 @@ public class ShipmentService implements ShipmentAPI {
         Shipment shipment = ShipmentMapper.INSTANCE.mapToShipment(request);
         shipment.setCustomerId(customerId);
         shipment.setDeliveryStatus(DeliveryStatus.NEW);
+        shipment.setCustomerId(customerId);
 
         Shipment newShipment = shipmentRepository.save(shipment);
         events.publishEvent(new ShipmentCreateEvent(newShipment.getId()));

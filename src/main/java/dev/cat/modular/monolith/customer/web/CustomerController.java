@@ -15,6 +15,7 @@ import dev.cat.modular.monolith.dto.shipment.ShipmentRequest;
 import dev.cat.modular.monolith.dto.shipment.ShipmentResponse;
 import dev.cat.modular.monolith.shipment.ShipmentAPI;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,6 +63,7 @@ public class CustomerController {
             @CorrectShipmentPrice
             @UniqueAddress
             ShipmentRequest request,
+            @NotNull
             @PathVariable
             @ExistingCustomer
             long id
