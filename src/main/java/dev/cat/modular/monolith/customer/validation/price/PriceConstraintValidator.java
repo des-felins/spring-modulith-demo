@@ -1,4 +1,4 @@
-package dev.cat.modular.monolith.customer.validation;
+package dev.cat.modular.monolith.customer.validation.price;
 
 import dev.cat.modular.monolith.calculator.CalculatorAPI;
 import dev.cat.modular.monolith.dto.calculator.CalculatorRequest;

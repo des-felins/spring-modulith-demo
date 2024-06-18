@@ -4,8 +4,6 @@ import dev.cat.modular.monolith.ShipmentCreateEvent;
 import dev.cat.modular.monolith.ShipmentStatusChangeEvent;
 import dev.cat.modular.monolith.dto.shipment.ShipmentRequest;
 import dev.cat.modular.monolith.dto.shipment.ShipmentResponse;
-import dev.cat.modular.monolith.customer.globalexceptions.NotFoundException;
-import dev.cat.modular.monolith.customer.globalexceptions.ValidationException;
 import dev.cat.modular.monolith.shipment.ShipmentAPI;
 import dev.cat.modular.monolith.shipment.mapper.ShipmentMapper;
 import dev.cat.modular.monolith.shipment.model.DeliveryStatus;
@@ -32,10 +30,6 @@ public class ShipmentService implements ShipmentAPI {
 
         Shipment shipment = ShipmentMapper.INSTANCE.mapToShipment(request);
 
-        if (shipment.getAddressTo().equals(shipment.getAddressFrom())) {
-            throw new ValidationException("Shipment must be delivered to a different address.");
-        }
-
         shipment.setDeliveryStatus(DeliveryStatus.NEW);
 
         Shipment newShipment = shipmentRepository.save(shipment);
@@ -54,9 +48,6 @@ public class ShipmentService implements ShipmentAPI {
     @Transactional
     public void updateShipmentStatus(Long id, String status) {
         Optional<Shipment> shipmentOpt = shipmentRepository.findById(id);
-        if (shipmentOpt.isEmpty()) {
-            throw new NotFoundException("Couldn't find shipment with id " + id);
-        }
         Shipment shipment = shipmentOpt.get();
         shipment.setDeliveryStatus(DeliveryStatus.valueOf(status));
         shipmentRepository.save(shipment);
