@@ -56,7 +56,7 @@ public class CustomerController {
         return new ResponseEntity<>(price, HttpStatus.OK);
     }
 
-    @PostMapping("/customers/{id}/new-shipment")
+    @PostMapping("/customers/{id}/shipment")
     public ResponseEntity<ShipmentResponse> createShipmentOrder(
             @Valid
             @RequestBody
