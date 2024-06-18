@@ -4,8 +4,6 @@ import dev.cat.modular.monolith.dto.shipment.ShipmentRequest;
 import dev.cat.modular.monolith.dto.shipment.ShipmentResponse;
 import dev.cat.modular.monolith.shipment.model.Shipment;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(unmappedTargetPolicy = org.mapstruct.ReportingPolicy.IGNORE,
