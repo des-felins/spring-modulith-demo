@@ -5,9 +5,7 @@ import org.springframework.modulith.core.ApplicationModules;
 import org.springframework.modulith.docs.Documenter;
 
 public class SpringModulithTests {
-
     ApplicationModules modules = ApplicationModules.of(BeelineApplication.class);
-
     @Test
     void shouldBeCompliant() {
         modules.verify();
@@ -16,7 +14,6 @@ public class SpringModulithTests {
     @Test
     void writeDocumentationSnippets() {
         new Documenter(modules)
-                .writeModuleCanvases()
                 .writeModulesAsPlantUml()
                 .writeIndividualModulesAsPlantUml();
     }

@@ -36,6 +36,7 @@ public class CustomerController {
 
     @PostMapping("/customers")
     public ResponseEntity<CustomerResponse> createCustomer(
+            @NotNull
             @Valid
             @RequestBody
             @CorrectPhoneNumber
@@ -46,18 +47,27 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/{id}/shipments")
-    public List<ShipmentResponse> getAllOrdersForCustomer(@PathVariable @ExistingCustomer long id) {
+    public List<ShipmentResponse> getAllOrdersForCustomer(
+            @NotNull
+            @PathVariable
+            @ExistingCustomer
+            long id) {
         return shipmentAPI.findOrdersByCustomerId(id);
     }
 
     @PostMapping("/quote")
-    public ResponseEntity<Double> calculatePrice(@Valid @RequestBody CalculatorRequest request) {
+    public ResponseEntity<Double> calculatePrice(
+            @NotNull
+            @Valid
+            @RequestBody
+            CalculatorRequest request) {
         Double price = calculatorAPI.calculatePrice(request);
         return new ResponseEntity<>(price, HttpStatus.OK);
     }
 
     @PostMapping("/customers/{id}/shipment")
     public ResponseEntity<ShipmentResponse> createShipmentOrder(
+            @NotNull
             @Valid
             @RequestBody
             @CorrectShipmentPrice
