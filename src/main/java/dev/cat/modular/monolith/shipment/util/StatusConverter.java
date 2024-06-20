@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 @Converter(autoApply = true)
 public class StatusConverter implements AttributeConverter<DeliveryStatus, String> {
-
     @Override
     public String convertToDatabaseColumn(DeliveryStatus status) {
         if (status == null) {

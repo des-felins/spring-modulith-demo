@@ -46,5 +46,4 @@ public class CustomerService implements CustomerAPI {
         log.info("Created shipment: {}", event.orderId());
     }
 
-
 }

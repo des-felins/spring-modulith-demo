@@ -26,5 +26,4 @@ public class CorrectPhoneValidator implements ConstraintValidator<CorrectPhoneNu
             return false;
         }
     }
-
 }

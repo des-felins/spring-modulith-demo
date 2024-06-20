@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PriceCalculator implements CalculatorAPI {
-
     @Override
     public double calculatePrice(CalculatorRequest request) {
 
@@ -14,6 +13,4 @@ public class PriceCalculator implements CalculatorAPI {
         return 10.0 * request.weight();
 
     }
-
-
 }
