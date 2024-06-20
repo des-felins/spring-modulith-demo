@@ -35,6 +35,7 @@ public class CustomerController {
     private final CustomerService service;
 
     @PostMapping("/customers")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<CustomerResponse> createCustomer(
             @NotNull
             @Valid
@@ -47,6 +48,7 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/{id}/shipments")
+    @ResponseStatus(HttpStatus.OK)
     public List<ShipmentResponse> getAllOrdersForCustomer(
             @NotNull
             @PathVariable
@@ -66,6 +68,7 @@ public class CustomerController {
     }
 
     @PostMapping("/customers/{id}/shipment")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ShipmentResponse> createShipmentOrder(
             @NotNull
             @Valid
